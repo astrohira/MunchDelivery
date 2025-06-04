@@ -1,12 +1,30 @@
-# React + Vite
+🍽️ MunchDelivery
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Um sistema de autoatendimento online simples e intuitivo para pequenos restaurantes, permitindo que os clientes façam pedidos de forma rápida e descomplicada.
+🚀 Sobre o Projeto
 
-Currently, two official plugins are available:
+O MunchDelivery foi desenvolvido com o objetivo de simular uma experiência de pedido online para restaurantes de pequeno porte. A aplicação se concentra na facilidade de uso e em um fluxo de pedido otimizado, desde a visualização do menu até a finalização do pedido.
+✨ Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+    Página Inicial Acolhedora: Uma introdução convidativa ao serviço do MunchDelivery.
+    Menu Interativo:
+        Exibição clara de pratos com nomes, descrições, preços e imagens.
+        Categorização de pratos para facilitar a navegação.
+        Botão "Adicionar ao Carrinho" para cada item.
+    Carrinho de Compras Eficiente:
+        Visualização detalhada dos itens adicionados, incluindo quantidade e subtotal.
+        Possibilidade de ajustar quantidades ou remover itens.
+        Cálculo automático do total do pedido.
+    Checkout Simplificado:
+        Campos para informações de entrega (endereço, nome, telefone).
+        Seleção de método de pagamento (simulado, como "Pagamento na entrega" ou "Cartão online").
+        Botão "Finalizar Pedido" com mensagem de confirmação.
+    Design Responsivo e Intuitivo:
+        Layout adaptável para dispositivos móveis e desktops.
+        Interface limpa, moderna e fácil de navegar.
+        Estética que remete ao universo da comida e entrega.
 
-## Expanding the ESLint configuration
+🛠️ Tecnologias Utilizadas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+    Backend: Node.js (para servir os arquivos estáticos e simular APIs).
+    Frontend: HTML, CSS e JSX (para a lógica e componentes interativos, simulando uma arquitetura de frontend moderna).
