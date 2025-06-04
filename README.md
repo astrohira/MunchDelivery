@@ -1,10 +1,10 @@
-🍽️ MunchDelivery
+# 🍽️ MunchDelivery
 
 Um sistema de autoatendimento online simples e intuitivo para pequenos restaurantes, permitindo que os clientes façam pedidos de forma rápida e descomplicada.
 🚀 Sobre o Projeto
 
 O MunchDelivery foi desenvolvido com o objetivo de simular uma experiência de pedido online para restaurantes de pequeno porte. A aplicação se concentra na facilidade de uso e em um fluxo de pedido otimizado, desde a visualização do menu até a finalização do pedido.
-✨ Funcionalidades
+## ✨ Funcionalidades
 
     Página Inicial Acolhedora: Uma introdução convidativa ao serviço do MunchDelivery.
     Menu Interativo:
@@ -24,7 +24,7 @@ O MunchDelivery foi desenvolvido com o objetivo de simular uma experiência de p
         Interface limpa, moderna e fácil de navegar.
         Estética que remete ao universo da comida e entrega.
 
-🛠️ Tecnologias Utilizadas
+### 🛠️ Tecnologias Utilizadas
 
     Backend: Node.js (para servir os arquivos estáticos e simular APIs).
     Frontend: HTML, CSS e JSX (para a lógica e componentes interativos, simulando uma arquitetura de frontend moderna).
