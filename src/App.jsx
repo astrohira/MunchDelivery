@@ -9,8 +9,8 @@ import CartPage from './pages/CartPage.jsx';
 import CheckoutPage from './pages/CheckoutPage.jsx';
 import AuthPage from './pages/AuthPage.jsx';
 import UserDashboardPage from './pages/UserDashboardPage.jsx';
-import RestaurantOwnerProfilePage from './pages/RestaurantOwnerProfilePage.jsx'; // NOVO: Importar a página do proprietário
-import Navbar from './components/NavBar.jsx'; // CORRIGIDO: Navbar com 'b' minúsculo
+import RestaurantOwnerProfilePage from './pages/RestaurantOwnerProfilePage.jsx';
+import Navbar from './components/NavBar.jsx';
 import Footer from './components/Footer.jsx';
 
 function App() {
@@ -22,7 +22,8 @@ function App() {
     const [loggedInUser, setLoggedInUser] = useState(localStorage.getItem('munchdelivery_loggedInUser') || null);
     const [authMessage, setAuthMessage] = useState(null);
     const [selectedCategory, setSelectedCategory] = useState(localStorage.getItem('munchdelivery_selectedCategory') || '');
-    const [userLocation, setUserLocation] = useState(null); // Para a API de localização
+    const [userLocation, setUserLocation] = useState(null);
+    const [showMobileMenu, setShowMobileMenu] = useState(false); // NOVO ESTADO: para controlar o menu mobile
 
     // Efeitos para persistir o estado no localStorage
     useEffect(() => {
@@ -50,6 +51,7 @@ function App() {
     const navigate = (page, params = {}) => {
         setCurrentPage(page);
         setAuthMessage(null);
+        setShowMobileMenu(false); // NOVO: Fecha o menu mobile ao navegar
 
         if (page === 'restaurantMenu' && params.restaurantId) {
             setSelectedRestaurantId(params.restaurantId);
@@ -60,13 +62,9 @@ function App() {
         if (page === 'home' || page === 'login' || page === 'checkout') {
             setSelectedCategory('');
         }
-        // Opcional: Limpar localização quando a página muda (depende do seu fluxo)
-        // if (page !== 'restaurants' && page !== 'home') {
-        //     setUserLocation(null);
-        // }
     };
 
-    // Função para definir a localização do usuário (passada para HomePage)
+    // Função para definir a localização do usuário
     const handleSetUserLocation = (location) => {
         setUserLocation(location);
     };
@@ -106,7 +104,7 @@ function App() {
         setCart(prevCart => prevCart.filter(item => item.id !== itemId));
     };
 
-    // Funções de Autenticação (Simuladas com localStorage)
+    // Funções de Autenticação
     const register = (username, password) => {
         if (!username || !password) {
             setAuthMessage({ type: 'error', text: 'Nome de usuário e senha são obrigatórios.' });
@@ -131,13 +129,11 @@ function App() {
             setLoggedInUser(username);
             setAuthMessage({ type: 'success', text: `Bem-vindo, ${username}!` });
 
-            // Lógica para determinar a rota baseada no tipo de usuário
-            // Usaremos os IDs de restaurante como "papel" de empresário
             const restaurantIds = ['mcdonalds-br', 'burguer-do-chefe', 'pizzaria-saborosa', 'saladas-express', 'sushi-master'];
             if (restaurantIds.includes(username)) {
-                navigate('ownerProfile'); // Redireciona para o perfil do empresário
+                navigate('ownerProfile');
             } else {
-                navigate('dashboard'); // Redireciona para o dashboard do usuário comum
+                navigate('dashboard');
             }
         } else {
             setAuthMessage({ type: 'error', text: 'Nome de usuário ou senha incorretos.' });
@@ -158,13 +154,13 @@ function App() {
         setSelectedCategory(categoryId);
     };
 
-    // Renderização condicional de conteúdo com base na currentPage
+    // Renderização condicional de conteúdo
     let content;
     switch (currentPage) {
         case 'home':
             content = <HomePage navigate={navigate} selectedCategory={selectedCategory} onSelectCategory={selectCategory} onSetUserLocation={handleSetUserLocation} />;
             break;
-        case 'restaurants': // Rota para a lista de restaurantes
+        case 'restaurants':
             content = <RestaurantsListPage navigate={navigate} selectedCategory={selectedCategory} onSelectCategory={selectCategory} userLocation={userLocation} />;
             break;
         case 'restaurantMenu':
@@ -177,7 +173,6 @@ function App() {
             content = <CheckoutPage cart={cart} navigate={navigate} />;
             break;
         case 'login':
-            // Se já logado, redireciona para o dashboard correto (usuário ou empresário)
             if (isLoggedIn) {
                 const restaurantIds = ['mcdonalds-br', 'burguer-do-chefe', 'pizzaria-saborosa', 'saladas-express', 'sushi-master'];
                 if (restaurantIds.includes(loggedInUser)) {
@@ -189,10 +184,10 @@ function App() {
                 content = <AuthPage login={login} register={register} authMessage={authMessage} isLoggedIn={isLoggedIn} />;
             }
             break;
-        case 'dashboard': // Dashboard para usuário comum
+        case 'dashboard':
             content = isLoggedIn ? <UserDashboardPage loggedInUser={loggedInUser} logout={logout} navigate={navigate} /> : <AuthPage login={login} register={register} authMessage={authMessage} isLoggedIn={isLoggedIn} />;
             break;
-        case 'ownerProfile': // NOVA ROTA: Perfil para empresário
+        case 'ownerProfile':
             content = isLoggedIn ? <RestaurantOwnerProfilePage loggedInUser={loggedInUser} logout={logout} navigate={navigate} /> : <AuthPage login={login} register={register} authMessage={authMessage} isLoggedIn={isLoggedIn} />;
             break;
         default:
@@ -200,11 +195,12 @@ function App() {
     }
 
     return (
-        <div id="app-root-react"> {/* Container principal para a aplicação React */}
+        <div id="app-root-react">
             <header>
                 <h1>MunchDelivery</h1>
             </header>
-            <Navbar navigate={navigate} isLoggedIn={isLoggedIn} logout={logout} />
+            {/* Passa showMobileMenu e setShowMobileMenu para a Navbar */}
+            <Navbar navigate={navigate} isLoggedIn={isLoggedIn} logout={logout} loggedInUser={loggedInUser} showMobileMenu={showMobileMenu} setShowMobileMenu={setShowMobileMenu} />
             {content}
             <Footer />
         </div>

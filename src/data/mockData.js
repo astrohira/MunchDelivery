@@ -59,40 +59,76 @@ export const menuItems = [
         restaurantId: 'mcdonalds-br'
     },
     {
-        id: 'hamburguer-bacon',
-        name: 'Hambúrguer com Bacon',
-        description: 'Suculento hambúrguer artesanal, queijo cheddar, bacon crocante e molho especial.',
-        price: 32.50,
-        image: 'https://via.placeholder.com/300x200?text=Hamburguer+Bacon',
-        category: 'Hambúrgueres',
-        restaurantId: 'burguer-do-chefe'
-    },
-    {
-        id: 'batata-frita',
-        name: 'Batata Frita',
-        description: 'Porção grande de batatas fritas crocantes.',
+        id: 'mcnuggets-10',
+        name: 'McNuggets (10 unidades)',
+        description: 'Deliciosos pedaços de frango empanados, perfeitos para compartilhar.',
         price: 18.00,
-        image: 'https://via.placeholder.com/300x200?text=Batata+Frita',
+        image: './images/mcnuggets.png',
         category: 'Acompanhamentos',
-        restaurantId: 'burguer-do-chefe'
+        restaurantId: 'mcdonalds-br'
     },
     {
-        id: 'pizza-calabresa',
-        name: 'Pizza de Calabresa',
-        description: 'Deliciosa pizza com molho de tomate, queijo mussarela e calabresa fatiada.',
-        price: 45.00,
-        image: 'https://via.placeholder.com/300x200?text=Pizza+Calabresa',
-        category: 'Pizzas',
-        restaurantId: 'pizzaria-saborosa'
+        id: 'coca-cola-500ml',
+        name: 'Coca-Cola 500ml',
+        description: 'Refrigerante clássico, perfeito para acompanhar seu lanche.',
+        price: 7.00,
+        image: './images/coca-cola_mc.png',
+        category: 'Bebidas',
+        restaurantId: 'mcdonalds-br'
     },
     {
-        id: 'pizza-frango-catupiry',
-        name: 'Pizza de Frango c/ Catupiry',
-        description: 'Frango desfiado, catupiry original e azeitonas.',
-        price: 50.00,
-        image: 'https://via.placeholder.com/300x200?text=Pizza+Frango',
-        category: 'Pizzas',
-        restaurantId: 'pizzaria-saborosa'
+        id: 'batata-frita-media',
+        name: 'Batata Frita Média',
+        description: 'Porção média de batata frita crocante, ideal para um lanche rápido.',
+        price: 15.00,
+        image: './images/batata-frita-media.png',
+        category: 'Acompanhamentos',
+        restaurantId: 'mcdonalds-br'
+    },
+    {
+        id: 'balde-frango',
+        name: 'Balde de Frango Frito',
+        description: 'Porção de 10 tirinhas de frango sem osso, empanados na receita de sua escolha (crocante ou secreta), serve 3 pessoas.',
+        price: 49.90,
+        image: './images/balde-frango.png',
+        category: 'Frango',
+        restaurantId: 'kfc-br'
+    },
+    {
+        id: 'frango_empanado',
+        name: 'Frango Empanado',
+        description: 'Deliciosos pedaços de frango empanados, crocantes por fora e suculentos por dentro.',
+        price: 9.90,
+        image: './images/frango-empanado.png',
+        category: 'Frango',
+        restaurantId: 'kfc-br'
+    },
+    {
+        id: 'combo-fbr',
+        name: 'Combo FBR',
+        description: 'Balde com 8 pedaços para 3 pessoas + 2 Batatas e Refrigerante 1,5L a sua escolha.',
+        price: 59.90,
+        image: './images/combo-fbr.png',
+        category: 'Frango',
+        restaurantId: 'kfc-br'
+    },
+    {
+        id: 'milkshake-baunilha',
+        name: 'Milkshake de Baunilha',
+        description: 'A combinação perfeita, 500ml do nosso mix sabor baunilha e calda de morango com pedaços de verdade.',
+        price: 17.90,
+        image: './images/milkshake-baunilha.png',
+        category: 'Sobremesas',
+        restaurantId: 'kfc-br'
+    },
+    {
+        id: 'batatafrita_grande',
+        name: 'Batata Frita Grande',
+        description: 'A clássica batata frita, crocante por fora e macia por dentro.',
+        price: 9.00,
+        image: './images/batata-frita-grande.png',
+        category: 'Acompanhamentos',
+        restaurantId: 'kfc-br'
     },
     {
         id: 'sushi-salmao',
@@ -147,6 +183,51 @@ export const menuItems = [
         image: 'https://via.placeholder.com/300x200?text=Refrigerante',
         category: 'Bebidas',
         restaurantId: 'mcdonalds-br'
+    },
+    {
+        id: 'brownie-gourmet',
+        name: 'Brownie Gourmet',
+        description: 'Brownie Gourmet bem recheado para alegrar o seu dia.',
+        price: 12.00,
+        image: './images/brownie-gourmet.png', // Certifique-se de ter esta imagem
+        category: 'Sobremesas',
+        restaurantId: 'mavi-doces'
+    },
+    {
+        id: 'trufa',
+        name: 'Trufa',
+        description: 'Trufa deliciosa para presentear sua namorada.',
+        price: 6.00,
+        image: './images/trufa.png', // Certifique-se de ter esta imagem
+        category: 'Sobremesas',
+        restaurantId: 'mavi-doces'
+    },
+    {
+        id: 'bombom-morango',
+        name: 'Bombom de morango',
+        description: 'Bombom com um morango dentro coberto com chocolate.',
+        price: 8.00,
+        image: './images/bombom-morango.png', // Certifique-se de ter esta imagem
+        category: 'Sobremesas',
+        restaurantId: 'mavi-doces'
+    },
+    {
+        id: 'bombom-uva',
+        name: 'Bombom de uva',
+        description: 'Bombom com uma uva verde dentro coberto com chocolate.',
+        price: 6.00,
+        image: './images/bombom-uva.png', // Certifique-se de ter esta imagem
+        category: 'Sobremesas',
+        restaurantId: 'mavi-doces'
+    },
+    {
+        id: 'bolo-de-pote',
+        name: 'Bolo de pote',
+        description: 'Bolo de pote feito com uma massa fofinha e muito bem recheado.',
+        price: 12.00,
+        image: './images/bolo-de-pote.png', // Certifique-se de ter esta imagem
+        category: 'Sobremesas',
+        restaurantId: 'mavi-doces'
     }
 ];
 

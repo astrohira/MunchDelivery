@@ -17,18 +17,23 @@ const RestaurantOwnerProfilePage = ({ loggedInUser, logout, navigate }) => {
     });
 
     useEffect(() => {
+
+        console.log("OwnerProfilePage: Componente montado, buscando informações do restaurante...");
+        console.log("OwnerProfilePage: loggedInUser: (vindo de App.jsx) =", loggedInUser);
+        console.log("OwnerProfilePage: restaurantId (usado para busca):", restaurantId);
         const fetchRestaurantInfo = async () => {
             try {
                 setLoading(true);
                 setError(null);
-                // Em um app real: await fetch(`/api/restaurants/${restaurantId}`);
-                // Por enquanto, buscamos do mockData
                 const foundRestaurant = mockRestaurants.find(r => r.id === restaurantId); // Usa mockRestaurants
+
+                console.log("OwnerProfilePage: Dados do restaurante encontrados:", foundRestaurant);
 
                 if (foundRestaurant) {
                     setRestaurantData(foundRestaurant);
                 } else {
                     setError('Dados do restaurante não encontrados para este ID.');
+                    setRestaurantData(null);
                 }
             } catch (err) {
                 setError('Falha ao carregar informações do restaurante.');
@@ -67,7 +72,6 @@ const RestaurantOwnerProfilePage = ({ loggedInUser, logout, navigate }) => {
         <div className="container owner-profile">
             <h2>Perfil de {restaurantData.name}</h2>
             <p>Gerencie as informações e o desempenho do seu restaurante.</p>
-
             <div className="profile-section">
                 <h3>Informações do Restaurante</h3>
                 <div className="restaurant-details-display">
