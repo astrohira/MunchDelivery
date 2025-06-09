@@ -610,6 +610,113 @@ button.remove:hover {
     color: var(--primary-color);
 }
 
+.auth-form {
+        max-width: 450px;
+        margin: 20px auto;
+        padding: 30px;
+        background-color: var(--card-background);
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.08);
+        text-align: center;
+    }
+
+    .auth-form h2 {
+        border-bottom: none;
+        margin-bottom: 20px;
+        color: var(--primary-color);
+    }
+
+    .auth-form label {
+        display: block;
+        margin-top: 15px;
+        margin-bottom: 8px;
+        text-align: left;
+        font-weight: bold;
+        color: var(--text-color);
+        font-size: 0.95em;
+    }
+
+    .auth-form input[type="text"],
+    .auth-form input[type="password"] {
+        width: calc(100% - 24px);
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 1em;
+        color: var(--text-color);
+        background-color: #fcfcfc;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .auth-form input[type="text"]::placeholder,
+    .auth-form input[type="password"]::placeholder {
+        color: #999;
+    }
+
+    .auth-form input[type="text"]:focus,
+    .auth-form input[type="password"]:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.2);
+        outline: none;
+    }
+
+    .auth-form button {
+        width: auto;
+        padding: 12px 25px;
+        margin: 0 10px 10px 0;
+        display: inline-block;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        font-weight: bold;
+        text-transform: uppercase;
+        transition: background-color 0.3s ease, transform 0.1s ease;
+    }
+
+    .auth-form button:hover {
+        background-color: #e65c50;
+        transform: translateY(-1px);
+    }
+
+    .auth-form button:last-child {
+        margin-right: 0;
+    }
+
+    .auth-form button.register-button {
+        background-color: var(--success-color) !important;
+    }
+
+    .auth-form button.register-button:hover {
+        background-color: #218838 !important;
+    }
+
+
+    .auth-message {
+        margin-top: 20px;
+        padding: 12px;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 0.95em;
+        text-align: left;
+    }
+
+    .auth-message.success {
+        background-color: #d4edda;
+        color: #155724;
+        border-color: #c3e6cb;
+    }
+
+    .auth-message.error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border-color: #f5c6cb;
+    }
+
 footer {
     margin-top: auto;
     background-color: var(--dark-card-background);
@@ -841,7 +948,6 @@ footer p {
         padding: 15px 0; /* Mais padding para itens de menu mobile */
         font-size: 1.2em; /* Fonte maior para facilitar o toque */
     }
-    /* --- FIM Estilos da Navegação Mobile --- */
 
     .container {
         padding: 15px;
@@ -877,114 +983,6 @@ footer p {
         width: 100%;
         justify-content: center;
         margin-top: 10px;
-    }
-
-    /* Estilos do Formulário de Autenticação (Login/Registro) - AGORA NO LUGAR CERTO */
-    .auth-form { /* REMOVIDO DE DENTRO DA MEDIA QUERY */
-        max-width: 450px;
-        margin: 20px auto;
-        padding: 30px;
-        background-color: var(--card-background);
-        border-radius: 8px;
-        box-shadow: 0 0 15px rgba(0,0,0,0.08);
-        text-align: center;
-    }
-
-    .auth-form h2 {
-        border-bottom: none;
-        margin-bottom: 20px;
-        color: var(--primary-color);
-    }
-
-    .auth-form label {
-        display: block;
-        margin-top: 15px;
-        margin-bottom: 8px;
-        text-align: left;
-        font-weight: bold;
-        color: var(--text-color);
-        font-size: 0.95em;
-    }
-
-    .auth-form input[type="text"],
-    .auth-form input[type="password"] {
-        width: calc(100% - 24px);
-        padding: 12px;
-        margin-bottom: 20px;
-        border: 1px solid var(--border-color);
-        border-radius: 5px;
-        box-sizing: border-box;
-        font-size: 1em;
-        color: var(--text-color);
-        background-color: #fcfcfc;
-        transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .auth-form input[type="text"]::placeholder,
-    .auth-form input[type="password"]::placeholder {
-        color: #999;
-    }
-
-    .auth-form input[type="text"]:focus,
-    .auth-form input[type="password"]:focus {
-        border-color: var(--primary-color);
-        box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.2);
-        outline: none;
-    }
-
-    .auth-form button {
-        width: auto;
-        padding: 12px 25px;
-        margin: 0 10px 10px 0;
-        display: inline-block;
-        background-color: var(--primary-color);
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 1em;
-        font-weight: bold;
-        text-transform: uppercase;
-        transition: background-color 0.3s ease, transform 0.1s ease;
-    }
-
-    .auth-form button:hover {
-        background-color: #e65c50;
-        transform: translateY(-1px);
-    }
-
-    .auth-form button:last-child {
-        margin-right: 0;
-    }
-
-    .auth-form button.register-button {
-        background-color: var(--success-color) !important;
-    }
-
-    .auth-form button.register-button:hover {
-        background-color: #218838 !important;
-    }
-
-
-    .auth-message {
-        margin-top: 20px;
-        padding: 12px;
-        border-radius: 5px;
-        font-weight: bold;
-        font-size: 0.95em;
-        text-align: left;
-    }
-
-    .auth-message.success {
-        background-color: #d4edda;
-        color: #155724;
-        border-color: #c3e6cb;
-    }
-
-    .auth-message.error {
-        background-color: #f8d7da;
-        color: #721c24;
-        border-color: #f5c6cb;
     }
 
     footer {
