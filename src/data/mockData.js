@@ -54,7 +54,7 @@ export const menuItems = [
         name: 'McChicken',
         description: 'Sanduíche com filé de frango empanado, alface e maionese.',
         price: 20.00,
-        image: './images/mcchicken.png',
+        image: './images/mcchiken.png',
         category: 'hamburgueres',
         restaurantId: 'mcdonalds-br'
     },
@@ -81,9 +81,45 @@ export const menuItems = [
         name: 'Batata Frita Média',
         description: 'Porção média de batata frita crocante, ideal para um lanche rápido.',
         price: 15.00,
-        image: './images/batata-frita-media.png',
+        image: './images/mcfritas.png',
         category: 'Acompanhamentos',
         restaurantId: 'mcdonalds-br'
+    },
+    {
+        id: 'whopper',
+        name: 'Whopper',
+        description: 'O clássico hambúrguer do Burger King, com carne grelhada, alface, tomate, cebola, picles e maionese.',
+        price: 27.00,
+        image: './images/whopper.png',
+        category: 'hamburgueres',
+        restaurantId: 'bk-br'
+    },
+    {
+        id: 'bk-chicken',
+        name: 'BK Chicken',
+        description: 'Sanduíche de frango grelhado com alface, tomate e maionese.',
+        price: 22.00,
+        image: './images/bk-chicken.png',
+        category: 'hamburgueres',
+        restaurantId: 'bk-br'
+    },
+    {
+        id: 'cheddar-duplo',
+        name: 'Cheddar Duplo',
+        description: 'Dois hambúrgueres com queijo cheddar derretido, cebola e molho especial.',
+        price: 30.00,
+        image: './images/cheddar-duplo.png',
+        category: 'hamburgueres',
+        restaurantId: 'bk-br'
+    },
+    {
+        id: 'onion-rings',
+        name: 'Onion Rings',
+        description: 'Anéis de cebola empanados e crocantes, perfeitos como acompanhamento.',
+        price: 12.00,
+        image: './images/onion-rings.png',
+        category: 'Acompanhamentos',
+        restaurantId: 'bk-br'
     },
     {
         id: 'balde-frango',
@@ -180,7 +216,7 @@ export const menuItems = [
         name: 'Refrigerante Lata',
         description: 'Coca-Cola, Guaraná, Soda.',
         price: 8.00,
-        image: 'https://via.placeholder.com/300x200?text=Refrigerante',
+        image: './images/refrigerante-lata.png',
         category: 'Bebidas',
         restaurantId: 'mcdonalds-br'
     },
@@ -225,9 +261,54 @@ export const menuItems = [
         name: 'Bolo de pote',
         description: 'Bolo de pote feito com uma massa fofinha e muito bem recheado.',
         price: 12.00,
-        image: './images/bolo-de-pote.png', // Certifique-se de ter esta imagem
+        image: './images/bolo-de-pote.jpg', // Certifique-se de ter esta imagem
         category: 'Sobremesas',
         restaurantId: 'mavi-doces'
+    },
+    {
+        id: 'sanduiche-de-frango',
+        name: 'Sanduíche de Frango',
+        description: 'Sanduíche de frango grelhado com alface, tomate e maionese.',
+        price: 15.00,
+        image: './images/frango.jpg',
+        category: 'Sanduíches',
+        restaurantId: 'subway-br'
+    },
+    {
+        id: 'sanduiche-de-steak',
+        name: 'Sanduíche de Steak',
+        description: 'Sanduíche de carne de sol com queijo, alface e molho especial.',
+        price: 16.00,
+        image: './images/steak.jpg',
+        category: 'Sanduíches',
+        restaurantId: 'subway-br'
+    },
+    {
+        id: 'sanduiche-vegetariano',
+        name: 'Sanduíche Vegetariano',
+        description: 'Sanduíche com legumes grelhados, queijo e molho pesto.',
+        price: 14.00,
+        image: './images/veg.jpg',
+        category: 'Sanduíches',
+        restaurantId: 'subway-br'
+    },
+    {
+        id: 'cookies',
+        name: 'Cookies',
+        description: 'Deliciosos cookies de chocolate, perfeitos para acompanhar seu café.',
+        price: 10.00,
+        image: './images/cookie.jpg',
+        category: 'Sobremesas',
+        restaurantId: 'subway-br'
+    },
+    {
+        id: 'suco-de-melancia',
+        name: 'Suco de Melancia',
+        description: 'Suco refrescante de melancia natural.',
+        price: 10.00,
+        image: './images/suco-melancia.png',
+        category: 'Bebidas',
+        restaurantId: 'subway-br'
     }
 ];
 
