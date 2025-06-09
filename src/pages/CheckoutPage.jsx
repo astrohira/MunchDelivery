@@ -1,23 +1,21 @@
-import React, { useState } from 'react'; // Adicione useState
+// src/pages/CheckoutPage.jsx
+import React, { useState } from 'react';
 
-const CheckoutPage = ({ cart, navigate }) => {
+const CheckoutPage = ({ cart, navigate, setAppMessage }) => {
     const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-    // Novos estados para os campos de endereço
     const [cep, setCep] = useState('');
     const [address, setAddress] = useState('');
-    const [neighborhood, setNeighborhood] = useState(''); // Bairro
+    const [neighborhood, setNeighborhood] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
-    const [addressNumber, setAddressNumber] = useState(''); // Número do endereço
-    const [addressComplement, setAddressComplement] = useState(''); // Complemento
+    const [addressNumber, setAddressNumber] = useState('');
+    const [addressComplement, setAddressComplement] = useState('');
 
     const [cepLoading, setCepLoading] = useState(false);
     const [cepError, setCepError] = useState('');
 
-    // Função para buscar o endereço pelo CEP
     const fetchAddressByCep = async (inputCep) => {
-        // Limpa o CEP (mantém apenas dígitos)
         const cleanCep = inputCep.replace(/\D/g, '');
 
         if (cleanCep.length !== 8) {
@@ -34,7 +32,7 @@ const CheckoutPage = ({ cart, navigate }) => {
             }
             const data = await response.json();
 
-            if (data.erro) { // ViaCEP retorna { "erro": true } se o CEP não for encontrado
+            if (data.erro) {
                 setCepError('CEP não encontrado ou inválido.');
                 setAddress('');
                 setNeighborhood('');
@@ -45,7 +43,7 @@ const CheckoutPage = ({ cart, navigate }) => {
                 setNeighborhood(data.bairro || '');
                 setCity(data.localidade || '');
                 setState(data.uf || '');
-                setCepError(''); // Limpa o erro se a busca for bem-sucedida
+                setCepError('');
             }
         } catch (error) {
             setCepError('Falha na conexão ao buscar CEP.');
@@ -57,7 +55,17 @@ const CheckoutPage = ({ cart, navigate }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Acessa os valores dos estados, não do formData diretamente para os campos de endereço
+
+        // Validação básica do formulário
+        if (!event.target.name.value || !event.target.phone.value || !cep || !address || !addressNumber || !neighborhood || !city || !state || !event.target.paymentMethod.value) {
+            setAppMessage({ type: 'error', text: 'Por favor, preencha todos os campos obrigatórios.' });
+            return;
+        }
+        if (cepError) {
+             setAppMessage({ type: 'error', text: 'Corrija o CEP antes de finalizar o pedido.' });
+             return;
+        }
+
         const deliveryInfo = {
             name: event.target.name.value,
             phone: event.target.phone.value,
@@ -69,19 +77,18 @@ const CheckoutPage = ({ cart, navigate }) => {
             paymentMethod: event.target.paymentMethod.value
         };
 
-        alert(`
-            Pedido Finalizado!
-            Total: R$ ${total.toFixed(2)}
-            Nome: ${deliveryInfo.name}
-            Telefone: ${deliveryInfo.phone}
-            Endereço: ${deliveryInfo.address} - ${deliveryInfo.neighborhood}, ${deliveryInfo.city}/${deliveryInfo.state}
-            CEP: ${deliveryInfo.cep}
-            Método de Pagamento: ${deliveryInfo.paymentMethod}
+        // Exibe a mensagem de sucesso
+        setAppMessage({
+            type: 'success',
+            text: `Pedido Concluído! Total: R$ ${total.toFixed(2)}. Será entregue em: ${deliveryInfo.address} - ${deliveryInfo.neighborhood}, ${deliveryInfo.city}/${deliveryInfo.state}.`
+        });
 
-            (Este é um pedido simulado e não será processado.)
-        `);
         localStorage.removeItem('munchdelivery_cart');
-        navigate('home');
+
+        // NOVO: Adiciona um atraso de 2 segundos (2000 ms) antes de navegar
+        setTimeout(() => {
+            navigate('home');
+        }, 2000); // Ajuste o tempo conforme necessário (ex: 1500ms para 1.5s)
     };
 
     if (cart.length === 0) {
@@ -120,12 +127,12 @@ const CheckoutPage = ({ cart, navigate }) => {
                         //     fetchAddressByCep(e.target.value);
                         // }
                     }}
-                    onBlur={(e) => fetchAddressByCep(e.target.value)} // Busca ao perder o foco
-                    maxLength="9" // 00000-000
+                    onBlur={(e) => fetchAddressByCep(e.target.value)}
+                    maxLength="9"
                     required
                 />
-                {cepLoading && <p style={{ color: '#007bff', fontSize: '0.9em' }}>Buscando CEP...</p>}
-                {cepError && <p style={{ color: 'red', fontSize: '0.9em' }}>{cepError}</p>}
+                {cepLoading && <p className="cep-message loading">Buscando CEP...</p>}
+                {cepError && <p className="cep-message error">{cepError}</p>}
 
                 {/* Campos de Endereço (preenchidos pelo CEP, mas editáveis) */}
                 <label htmlFor="address">Rua:</label>
@@ -137,7 +144,7 @@ const CheckoutPage = ({ cart, navigate }) => {
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                     required
-                    readOnly={cepLoading} // Não permite edição enquanto busca o CEP
+                    readOnly={cepLoading}
                 />
 
                 <label htmlFor="addressNumber">Número:</label>
@@ -205,7 +212,7 @@ const CheckoutPage = ({ cart, navigate }) => {
                 </select>
 
                 <h3>Total a Pagar: R$ {total.toFixed(2)}</h3>
-                <button type="submit" disabled={cepLoading}>Finalizar Pedido</button> {/* Desabilita botão enquanto busca CEP */}
+                <button type="submit" disabled={cepLoading}>Finalizar Pedido</button>
             </form>
         </div>
     );

@@ -20,10 +20,11 @@ function App() {
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem('munchdelivery_cart')) || []);
     const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('munchdelivery_isLoggedIn') === 'true');
     const [loggedInUser, setLoggedInUser] = useState(localStorage.getItem('munchdelivery_loggedInUser') || null);
-    const [authMessage, setAuthMessage] = useState(null);
+    const [authMessage, setAuthMessage] = useState(null); // Mensagens de autenticação
+    const [appMessage, setAppMessage] = useState(null); // NOVO: Mensagens gerais da aplicação
     const [selectedCategory, setSelectedCategory] = useState(localStorage.getItem('munchdelivery_selectedCategory') || '');
     const [userLocation, setUserLocation] = useState(null);
-    const [showMobileMenu, setShowMobileMenu] = useState(false); // NOVO ESTADO: para controlar o menu mobile
+    const [showMobileMenu, setShowMobileMenu] = useState(false);
 
     // Efeitos para persistir o estado no localStorage
     useEffect(() => {
@@ -47,11 +48,22 @@ function App() {
         localStorage.setItem('munchdelivery_selectedCategory', selectedCategory);
     }, [selectedCategory]);
 
+    // Efeito para limpar mensagens da aplicação após um tempo
+    useEffect(() => {
+        if (appMessage) {
+            const timer = setTimeout(() => {
+                setAppMessage(null);
+            }, 3000); // Mensagem some após 3 segundos
+            return () => clearTimeout(timer);
+        }
+    }, [appMessage]);
+
     // Função de navegação
     const navigate = (page, params = {}) => {
         setCurrentPage(page);
-        setAuthMessage(null);
-        setShowMobileMenu(false); // NOVO: Fecha o menu mobile ao navegar
+        setAuthMessage(null); // Limpa mensagens de autenticação ao navegar
+        setAppMessage(null); // NOVO: Limpa mensagens gerais ao navegar
+        setShowMobileMenu(false); // Fecha o menu mobile ao navegar
 
         if (page === 'restaurantMenu' && params.restaurantId) {
             setSelectedRestaurantId(params.restaurantId);
@@ -67,6 +79,7 @@ function App() {
     // Função para definir a localização do usuário
     const handleSetUserLocation = (location) => {
         setUserLocation(location);
+        setAppMessage({ type: 'success', text: 'Localização obtida com sucesso!' }); // Mensagem de sucesso
     };
 
     // Funções do Carrinho
@@ -81,7 +94,7 @@ function App() {
                 return [...prevCart, { ...itemToAdd, quantity: 1 }];
             }
         });
-        alert(`${itemToAdd.name} adicionado ao carrinho!`);
+        setAppMessage({ type: 'success', text: `${itemToAdd.name} adicionado ao carrinho!` }); // NOVO: Substitui alert()
     };
 
     const updateQuantity = (itemId, newQuantity) => {
@@ -89,6 +102,7 @@ function App() {
             const itemIndex = prevCart.findIndex(item => item.id === itemId);
             if (itemIndex > -1) {
                 if (newQuantity <= 0) {
+                    setAppMessage({ type: 'info', text: 'Item removido do carrinho.' }); // Opcional: mensagem para remover item
                     return prevCart.filter(item => item.id !== itemId);
                 } else {
                     const newCart = [...prevCart];
@@ -102,6 +116,7 @@ function App() {
 
     const removeItem = (itemId) => {
         setCart(prevCart => prevCart.filter(item => item.id !== itemId));
+        setAppMessage({ type: 'info', text: 'Item removido do carrinho.' }); // Opcional: mensagem para remover item
     };
 
     // Funções de Autenticação
@@ -128,7 +143,7 @@ function App() {
             setIsLoggedIn(true);
             setLoggedInUser(username);
             setAuthMessage({ type: 'success', text: `Bem-vindo, ${username}!` });
-
+            
             const restaurantIds = ['mcdonalds-br', 'burguer-do-chefe', 'pizzaria-saborosa', 'saladas-express', 'sushi-master'];
             if (restaurantIds.includes(username)) {
                 navigate('ownerProfile');
@@ -145,7 +160,7 @@ function App() {
         setLoggedInUser(null);
         localStorage.removeItem('munchdelivery_isLoggedIn');
         localStorage.removeItem('munchdelivery_loggedInUser');
-        alert('Você foi desconectado.');
+        setAppMessage({ type: 'info', text: 'Você foi desconectado.' }); // NOVO: Substitui alert()
         navigate('home');
     };
 
@@ -170,7 +185,7 @@ function App() {
             content = <CartPage cart={cart} updateQuantity={updateQuantity} removeItem={removeItem} navigate={navigate} />;
             break;
         case 'checkout':
-            content = <CheckoutPage cart={cart} navigate={navigate} />;
+            content = <CheckoutPage cart={cart} navigate={navigate} setAppMessage={setAppMessage} />; // NOVO: Passa setAppMessage
             break;
         case 'login':
             if (isLoggedIn) {
@@ -199,8 +214,13 @@ function App() {
             <header>
                 <h1>MunchDelivery</h1>
             </header>
-            {/* Passa showMobileMenu e setShowMobileMenu para a Navbar */}
             <Navbar navigate={navigate} isLoggedIn={isLoggedIn} logout={logout} loggedInUser={loggedInUser} showMobileMenu={showMobileMenu} setShowMobileMenu={setShowMobileMenu} />
+            {/* NOVO: Área para mensagens da aplicação */}
+            {appMessage && (
+                <div className={`app-message ${appMessage.type}`}>
+                    {appMessage.text}
+                </div>
+            )}
             {content}
             <Footer />
         </div>

@@ -889,6 +889,43 @@ footer p {
     color: var(--text-color);
 }
 
+/* Estilos para Mensagens da Aplicação (AppMessage) */
+.app-message {
+    position: fixed; /* Fixa no canto superior */
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%); /* Centraliza horizontalmente */
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1em;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 1000; /* Garante que fique acima de tudo */
+    opacity: 1;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    text-align: center;
+    min-width: 250px;
+}
+
+.app-message.success {
+    background-color: var(--success-color); /* Verde */
+}
+
+.app-message.error {
+    background-color: var(--error-color); /* Vermelho */
+}
+
+.app-message.info {
+    background-color: #007bff; /* Azul */
+}
+
+/* Adicione esta classe via JS quando a mensagem for desaparecer */
+.app-message.fade-out {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+}
+
 /* Media Queries para Responsividade */
 @media (max-width: 768px) {
     #app-root-react {
