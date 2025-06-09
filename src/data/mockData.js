@@ -108,7 +108,7 @@ export const menuItems = [
         name: 'Cheddar Duplo',
         description: 'Dois hambúrgueres com queijo cheddar derretido, cebola e molho especial.',
         price: 30.00,
-        image: './images/cheddar-duplo.png',
+        image: './images/cheddar_duplo.png',
         category: 'hamburgueres',
         restaurantId: 'bk-br'
     },
