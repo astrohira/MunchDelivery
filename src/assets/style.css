@@ -143,7 +143,7 @@ header h1 {
 
 .nav-links li a:hover,
 .nav-links li button:hover {
-    color: var(--secondary-color);
+    color: var(--overlay-color);
     transform: translateY(-2px);
 }
 
