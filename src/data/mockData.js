@@ -171,7 +171,7 @@ export const menuItems = [
         name: 'Combinado de Salmão (10 pçs)',
         description: 'Nigiri, sashimi e uramaki de salmão fresco.',
         price: 75.00,
-        image: './images/sushi-salmao.png',
+        image: './images/combinado-de-salmao.png',
         category: 'Comida Japonesa',
         restaurantId: 'sushi-master'
     },
@@ -180,7 +180,7 @@ export const menuItems = [
         name: 'Hot Roll Philadelfia (8 pçs)',
         description: 'Roll empanado e frito com salmão e cream cheese.',
         price: 40.00,
-        image: './images/hot-roll-phil.png',
+        image: './images/hot-roll-phil.jpg',
         category: 'Comida Japonesa',
         restaurantId: 'sushi-master'
     },
