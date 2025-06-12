@@ -180,7 +180,7 @@ export const menuItems = [
         name: 'Hot Roll Philadelfia (8 pçs)',
         description: 'Roll empanado e frito com salmão e cream cheese.',
         price: 40.00,
-        image: './../images/hot-roll-phil.png',
+        image: './images/hot-roll-phil.png',
         category: 'Comida Japonesa',
         restaurantId: 'sushi-master'
     },
