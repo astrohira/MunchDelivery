@@ -29,4 +29,4 @@ O MunchDelivery foi desenvolvido com o objetivo de simular uma experiência de p
 ### Backend:
         Node.js (para servir os arquivos estáticos e simular APIs).
 ### Frontend:
-        HTML, CSS e JSX e React.js (para a lógica e componentes interativos, simulando uma arquitetura de frontend moderna).
+        HTML, CSS e JSX (para a lógica e componentes interativos, simulando uma arquitetura de frontend moderna).
